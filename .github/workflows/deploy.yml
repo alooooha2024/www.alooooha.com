@@ -38,6 +38,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Test network connection
+        run: ping -c 4 60.188.247.209
+
 
       - name: Checkout code
         uses: actions/checkout@v2
@@ -46,37 +49,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y sshpass
-          sshpass -p "${{ env.PWD }}" scp -o StrictHostKeyChecking=no -r ./ ${{ env.USER_NAME }}@${{ env.IP }}:/www/wwwroot/
-
-      # - name: Setup SSH
-      #   run: |
-      #     mkdir -p ~/.ssh
-      #     echo "${{ secrets.GITUSERKEY }}" > ~/.ssh/id_rsa
-      #     chmod 600 ~/.ssh/id_rsa
-      #     ssh-keyscan ${{ env.IP }} >> ~/.ssh/known_hosts
-      #     echo "-----------------------------------------------"
-      #     echo "SSH Key print"
-      #     echo "secrets.githubKey: ${{ secrets.GITUSERKEY }}"
-      #     echo "-----------------------------------------------"
-      #     ls ./
-      #     echo "-----------------------------------------------"
-      #     ls ~/
-      #     echo "-----------------------------------------------"
-      #     ls ~/.ssh
-
-      # - name: 部署到天翼云
-      #   run: |
-      #     echo "-----------------------------------------------"
-      #     echo "SSH Key print"
-      #     echo "secrets.githubKey: ${{ secrets.GITUSERKEY }}"
-      #     echo "-----------------------------------------------"
-      #     ls ./
-      #     echo "-----------------------------------------------"
-      #     ls ~/
-      #     echo "-----------------------------------------------"
-      #     ls ~/.ssh
-      #     ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ env.USER_NAME }}@${{ env.IP }} "echo 'SSH connection successful'"
-
-
-
-      #     scp -r ./* ${{ env.USER_NAME }}@${{ env.IP }}:/www/wwwroot/alooooha.com
+          echo "-----------------------------------------------"
+          echo "${{ env.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          echo "-----------------------------------------------"
+          sshpass -p -v "${{ env.PWD }}" scp -o StrictHostKeyChecking=no -r ./ ${{ env.USER_NAME }}@${{ env.IP }}:/www/wwwroot/
