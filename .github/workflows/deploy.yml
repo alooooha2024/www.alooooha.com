@@ -47,6 +47,7 @@ jobs:
           echo "SSH Key print"
           echo "secrets.aloooohaKey: ${{ secrets.aloooohaKey }}"
           echo "-----------------------------------------------"
+          ls ./
 
       - name: 部署到天翼云
         run: |
