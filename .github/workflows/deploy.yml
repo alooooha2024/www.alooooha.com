@@ -55,4 +55,17 @@ jobs:
 
       - name: 部署到天翼云
         run: |
+          echo "-----------------------------------------------"
+          echo "SSH Key print"
+          echo "secrets.githubKey: ${{ secrets.GITHUBKEY }}"
+          echo "-----------------------------------------------"
+          ls ./
+          echo "-----------------------------------------------"
+          ls ~/
+          echo "-----------------------------------------------"
+          ls ~/.ssh
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ env.USER_NAME }}@${{ env.IP }} "echo 'SSH connection successful'"
+
+
+
           scp -r ./* ${{ env.USER_NAME }}@${{ env.IP }}:/www/wwwroot/alooooha.com
