@@ -55,7 +55,11 @@ jobs:
       - name: Build static site
         run: |
           npx hexo generate
-  
+
+      - name: Check public directory
+        run: |
+          ls -la ./public
+
       - name: 部署到天翼云
         run: |
           scp -r ./public/* ${{ env.USER_NAME }}@${{ env.IP }}:/www/wwwroot/alooooha.com
