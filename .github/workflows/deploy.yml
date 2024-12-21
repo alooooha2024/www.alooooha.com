@@ -43,12 +43,7 @@ jobs:
           echo "${{ secrets.aloooohaKey }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan ${{ env.IP }} >> ~/.ssh/known_hosts
-
-      - name: Test SSH connection
-        run: |
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ env.USER_NAME }}@${{ env.IP }} "echo 'SSH connection successful'"
-  
-
+          
       - name: 部署到天翼云
         run: |
           scp -r ./* ${{ env.USER_NAME }}@${{ env.IP }}:/www/wwwroot/alooooha.com
