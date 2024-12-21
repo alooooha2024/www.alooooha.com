@@ -44,30 +44,6 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan ${{ env.IP }} >> ~/.ssh/known_hosts
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-  
-      - name: Install dependencies
-        run: npm install
-
-      - name: Verify Hexo installation
-        run: |
-          npx hexo --version
-
-      - name: Check project structure
-        run: |
-          ls -la
-
-      - name: Build static site
-        run: |
-          npx hexo generate --cwd .
-
-      - name: Check public directory
-        run: |
-          ls -la ./public
-
       - name: 部署到天翼云
         run: |
-          scp -r ./public/* ${{ env.USER_NAME }}@${{ env.IP }}:/www/wwwroot/alooooha.com
+          scp -r ./* ${{ env.USER_NAME }}@${{ env.IP }}:/www/wwwroot/alooooha.com
