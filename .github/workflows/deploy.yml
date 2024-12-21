@@ -33,6 +33,7 @@ jobs:
       PWD: ${{ secrets.GITUSERPWD }}
       IP: 60.188.247.209
       SSH_PRIVATE_KEY: ${{ secrets.GITUSERKEY }} # 私匙
+      TARGET: /www/wwwroot/alooooha.com/ # 目标路径
 
     steps:
       - name: Checkout
@@ -52,4 +53,4 @@ jobs:
           echo "-----------------------------------------------"
           echo "${{ env.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           echo "-----------------------------------------------"
-          sshpass -p -v "${{ env.PWD }}" scp -o StrictHostKeyChecking=no -r ./ ${{ env.USER_NAME }}@${{ env.IP }}:/www/wwwroot/
+          sshpass -p -v "${{ env.PWD }}" scp -o StrictHostKeyChecking=no -r ./ ${{ env.USER_NAME }}@${{ env.IP }}:${{ env.TARGET }}
