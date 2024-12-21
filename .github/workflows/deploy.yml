@@ -32,21 +32,21 @@ jobs:
       USER_NAME: gituser
       PWD: ${{ secrets.GITUSERPWD }}
       IP: 60.188.247.209
-      SSH_PRIVATE_KEY: ${{ secrets.GITUSERKEY }} // 私匙
+      SSH_PRIVATE_KEY: ${{ secrets.GITUSERKEY }} # 私匙
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
 
-        - name: Checkout code
+      - name: Checkout code
         uses: actions/checkout@v2
 
-        - name: Setup SSH
-          run: |
-            sudo apt-get update
-            sudo apt-get install -y sshpass
-            sshpass -p "${{ env.PWD }}" scp -o StrictHostKeyChecking=no -r ./ ${{ env.USER_NAME }}@${{ env.IP }}:/www/wwwroot/
+      - name: Setup SSH
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y sshpass
+          sshpass -p "${{ env.PWD }}" scp -o StrictHostKeyChecking=no -r ./ ${{ env.USER_NAME }}@${{ env.IP }}:/www/wwwroot/
 
       # - name: Setup SSH
       #   run: |
