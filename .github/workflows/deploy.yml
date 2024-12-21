@@ -43,7 +43,11 @@ jobs:
           echo "${{ secrets.aloooohaKey }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan ${{ env.IP }} >> ~/.ssh/known_hosts
-          
+          echo "-----------------------------------------------"
+          echo "SSH Key print"
+          echo "secrets.aloooohaKey: ${{ secrets.aloooohaKey }}"
+          echo "-----------------------------------------------"
+
       - name: 部署到天翼云
         run: |
           scp -r ./* ${{ env.USER_NAME }}@${{ env.IP }}:/www/wwwroot/alooooha.com
