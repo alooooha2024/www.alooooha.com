@@ -29,9 +29,9 @@ jobs:
       url: https://www.alooooha.com
     runs-on: ubuntu-latest
     env: # 在这里定义环境变量
-      USER_NAME: alooooha
+      USER_NAME: gituser
       IP: 60.188.247.209
-      SSH_PRIVATE_KEY: ${{ secrets.GITHUBKEY }} // 私匙
+      SSH_PRIVATE_KEY: ${{ secrets.gituserKey }} // 私匙
 
     steps:
       - name: Checkout
@@ -40,12 +40,12 @@ jobs:
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.GITHUBKEY }}" > ~/.ssh/id_rsa
+          echo "${{ secrets.gituserKey }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan ${{ env.IP }} >> ~/.ssh/known_hosts
           echo "-----------------------------------------------"
           echo "SSH Key print"
-          echo "secrets.githubKey: ${{ secrets.GITHUBKEY }}"
+          echo "secrets.githubKey: ${{ secrets.gituserKey }}"
           echo "-----------------------------------------------"
           ls ./
           echo "-----------------------------------------------"
@@ -57,7 +57,7 @@ jobs:
         run: |
           echo "-----------------------------------------------"
           echo "SSH Key print"
-          echo "secrets.githubKey: ${{ secrets.GITHUBKEY }}"
+          echo "secrets.githubKey: ${{ secrets.gituserKey }}"
           echo "-----------------------------------------------"
           ls ./
           echo "-----------------------------------------------"
