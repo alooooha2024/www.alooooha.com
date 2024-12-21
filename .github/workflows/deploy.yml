@@ -51,8 +51,8 @@ jobs:
   
       - name: Install dependencies
         run: npm install
-  
-        - name: Verify Hexo installation
+
+      - name: Verify Hexo installation
         run: |
           npx hexo --version
 
