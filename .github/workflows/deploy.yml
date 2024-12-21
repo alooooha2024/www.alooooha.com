@@ -39,13 +39,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Test network connection
-        run: ping -c 4 60.188.247.209
-
-
-      - name: Checkout code
-        uses: actions/checkout@v2
-
       - name: Setup SSH
         run: |
           sudo apt-get update
