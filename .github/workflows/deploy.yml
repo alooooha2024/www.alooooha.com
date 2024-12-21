@@ -56,9 +56,13 @@ jobs:
         run: |
           npx hexo --version
 
+      - name: Check project structure
+        run: |
+          ls -la
+
       - name: Build static site
         run: |
-          npx hexo generate
+          npx hexo generate --cwd .
 
       - name: Check public directory
         run: |
