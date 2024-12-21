@@ -31,7 +31,7 @@ jobs:
     env: # 在这里定义环境变量
       USER_NAME: alooooha
       IP: 60.188.247.209
-      SSH_PRIVATE_KEY: ${{ secrets.tianyiyunKey }} // 私匙
+      SSH_PRIVATE_KEY: ${{ secrets.aloooohaKey }} // 私匙
 
     steps:
       - name: Checkout
@@ -40,7 +40,7 @@ jobs:
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          echo "${{ secrets.aloooohaKey }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan ${{ env.IP }} >> ~/.ssh/known_hosts
 
