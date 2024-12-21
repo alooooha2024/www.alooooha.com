@@ -43,4 +43,5 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y sshpass
-          sshpass -p -v "${{ env.PWD }}" scp -o StrictHostKeyChecking=no -r ./ ${{ env.USER_NAME }}@${{ env.IP }}:${{ env.TARGET }}
+          # sshpass -p -v "${{ env.PWD }}" scp -o StrictHostKeyChecking=no -r ./ ${{ env.USER_NAME }}@${{ env.IP }}:${{ env.TARGET }}
+          rsync -avz --progress ./ ${{ env.USER_NAME }}@${{ env.IP }}:${{ env.TARGET }}
